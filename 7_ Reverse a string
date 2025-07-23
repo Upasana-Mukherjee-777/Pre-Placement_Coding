@@ -1,0 +1,49 @@
+QUESTION: 
+
+You are given a string s, and your task is to reverse the string.
+
+Examples:
+
+Input: s = "Geeks"
+Output: "skeeG"
+Input: s = "for"
+Output: "rof"
+Input: s = "a"
+Output: "a"
+Constraints:
+1 <= s.size() <= 106
+s contains only alphabetic characters (both uppercase and lowercase).
+
+GFG Python3:
+
+class Solution:
+    def reverseString(self, s):
+        # Since strings are immutable in Python, convert to list
+        s = list(s)
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
+        
+        return "".join(s)
+
+GFG C:
+
+#include <string.h>
+
+char* reverseString(char* s) {
+    int left = 0;
+    int right = strlen(s) - 1;
+
+    while (left < right) {
+        char temp = s[left];
+        s[left] = s[right];
+        s[right] = temp;
+        left++;
+        right--;
+    }
+
+    return s;
+}
