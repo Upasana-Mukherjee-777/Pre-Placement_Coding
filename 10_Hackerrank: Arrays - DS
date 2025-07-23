@@ -1,0 +1,72 @@
+QUESTION: 
+
+An array is a data structure that stores elements of the same type in a contiguous block of memory. In an array, A, of size N, each memory location
+has some unique index, i (where 0 ≤ i < N), that can be referenced as Ali) or A.
+Your task is to reverse an array of integers.
+Note: If you've already solved our C++ domain's Arrays Introduction challenge, you may want to skip this.
+Example
+A= [1,2,3]
+Return [3, 2, 1].
+Function Description
+Complete the function reverse Array with the following parameter(s):
+int A[n]: the array to reverse
+Returns
+int[n]: the reversed array
+Input Format
+The first line contains an integer, N, the number of integers in A.
+The second line contains N space-separated integers that make up A.
+Constraints
+1 < N < 103
+1 A[i] < 104, where A[i] is the ith integer in A
+
+Python3:
+
+def reverseArray(A):
+    return A[::-1]
+
+
+if __name__ == '__main__':
+    n = int(input())  # number of integers in array
+    A = list(map(int, input().split()))  # array elements
+    result = reverseArray(A)
+    print(' '.join(map(str, result)))
+
+C:
+
+#include <stdio.h>
+
+void reverseArray(int arr[], int n) {
+    int start = 0;
+    int end = n - 1;
+    while (start < end) {
+        
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    int n;
+
+    scanf("%d", &n);
+
+    int arr[n];
+
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    reverseArray(arr, n);
+
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+
