@@ -1,0 +1,51 @@
+QUESTION: 
+
+You are given a string s. Your task is to determine if the string is a palindrome. A string is considered a palindrome if it reads the same forwards and backwards.
+
+Examples :
+
+Input: s = "abba"
+Output: true
+Explanation: "abba" reads the same forwards and backwards, so it is a palindrome.
+Input: s = "abc" 
+Output: false
+Explanation: "abc" does not read the same forwards and backwards, so it is not a palindrome.
+Input: s = "a"
+Output: true
+Explanation: A single-character string is always a palindrome.
+Input: s = "acbca"
+Output: true
+Explanation: "acbca" reads the same forwards and backwards, so it is a palindrome.
+Constraints:
+1 ≤ s.size() ≤ 106
+The string s contains only lowercase letters (a-z).
+
+Expected Complexities
+Company Tags
+PaytmZohoMorgan StanleyAmazonD-E-ShawFactSetCiscoFacebook
+
+GFG Python3:
+
+class Solution:
+    def isPalindrome(self, s):
+        return s == s[::-1]
+
+GFG C:
+
+#include <string.h>
+#include <stdbool.h>
+
+bool isPalindrome(char *s) {
+    int left = 0;
+    int right = strlen(s) - 1;
+
+    while (left < right) {
+        if (s[left] != s[right]) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+
+    return true;
+}
