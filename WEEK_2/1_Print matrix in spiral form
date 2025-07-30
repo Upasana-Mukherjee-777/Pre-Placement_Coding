@@ -1,0 +1,128 @@
+QUESTION: 
+You are given a rectangular matrix mat[][] of size n x m, and your task is to return an array while traversing the matrix in spiral form.
+
+Examples:
+
+Input: mat[][] = [[1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [9, 10, 11, 12], 
+                [13, 14, 15, 16]]
+Output: [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
+Explanation: 
+
+Input: mat[][] = [[2, 7, 10],
+                [5, 1, 3],
+                [4, 2, 8]]
+Output: [2, 7, 10, 3, 8, 2, 4, 5, 1]
+Explanation: Applying same technique as shown above.
+Input: mat[][] = [[32, 44, 27, 23],
+                [54, 28, 50, 62]]
+Output: [32, 44, 27, 23, 62, 50, 28, 54]
+Explanation: Applying same technique as shown above, output will be [32, 44, 27, 23, 62, 50, 28, 54].
+Constraints:
+1 ≤ n, m ≤1000
+0 ≤ mat[i][j] ≤100
+
+
+GFG Python3:
+
+You are given a rectangular matrix mat[][] of size n x m, and your task is to return an array while traversing the matrix in spiral form.
+
+Examples:
+
+Input: mat[][] = [[1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [9, 10, 11, 12], 
+                [13, 14, 15, 16]]
+Output: [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
+Explanation: 
+
+Input: mat[][] = [[2, 7, 10],
+                [5, 1, 3],
+                [4, 2, 8]]
+Output: [2, 7, 10, 3, 8, 2, 4, 5, 1]
+Explanation: Applying same technique as shown above.
+Input: mat[][] = [[32, 44, 27, 23],
+                [54, 28, 50, 62]]
+Output: [32, 44, 27, 23, 62, 50, 28, 54]
+Explanation: Applying same technique as shown above, output will be [32, 44, 27, 23, 62, 50, 28, 54].
+Constraints:
+1 ≤ n, m ≤1000
+0 ≤ mat[i][j] ≤100
+
+class Solution:
+    def spirallyTraverse(self, mat):
+       # code here
+        if not mat:
+            return []
+        
+        n = len(mat)
+        m = len(mat[0])
+        result = []
+        
+        top, bottom = 0, n - 1
+        left, right = 0, m - 1
+        
+        while top <= bottom and left <= right:
+            for i in range(left, right + 1):
+                result.append(mat[top][i])
+            top += 1
+            
+    
+            for i in range(top, bottom + 1):
+                result.append(mat[i][right])
+            right -= 1
+            
+            if top <= bottom:
+               
+                for i in range(right, left - 1, -1):
+                    result.append(mat[bottom][i])
+                bottom -= 1
+            
+            if left <= right:
+                
+                for i in range(bottom, top - 1, -1):
+                    result.append(mat[i][left])
+                left += 1
+                
+        return result
+
+
+C:
+
+#include <stdio.h>
+
+void spirallyTraverse(int mat[][100], int n, int m) {
+    int top = 0, bottom = n - 1;
+    int left = 0, right = m - 1;
+
+    while (top <= bottom && left <= right) {
+        // Traverse from left to right
+        for (int i = left; i <= right; i++) {
+            printf("%d ", mat[top][i]);
+        }
+        top++;
+
+        // Traverse from top to bottom
+        for (int i = top; i <= bottom; i++) {
+            printf("%d ", mat[i][right]);
+        }
+        right--;
+
+        // Traverse from right to left
+        if (top <= bottom) {
+            for (int i = right; i >= left; i--) {
+                printf("%d ", mat[bottom][i]);
+            }
+            bottom--;
+        }
+
+        // Traverse from bottom to top
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--) {
+                printf("%d ", mat[i][left]);
+            }
+            left++;
+        }
+    }
+}
