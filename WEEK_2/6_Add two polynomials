@@ -1,0 +1,89 @@
+QUESTION: 
+Given two polynomial numbers represented by a linked list. The task is to add these lists meaning the coefficients with the same variable powers.
+Note:  Given polynomials are sorted in decreasing order of power.
+
+Examples:
+
+Input: LinkedList1: x2, LinkedList2: x3
+Output: x3 + x2
+Explanation: Since, x2 and x3 both have different powers as 2 and 3. So, their coefficient can't be added up.
+Input: LinkedList1:  x3 -> 2x2, LinkedList2:  3x3 -> 4x2
+Output: 4x3 -> 6x2
+Explanation: Since, x3 has two different coefficients as 3 and 1. Adding them up will lead to 4x3. Also, x2 has two coefficients as 4 and 2. So, adding them up will give 6x2.
+Note: Try to solve the question without using any extra space.
+
+Expected Time Complexity: O(n+m)
+Expected Auxiliary Space: O(1)
+
+Constraints:
+1 <= no. of nodes LinkedList1, LinkedList2 <= 105
+1 <= node->data <= 106
+
+
+PYTHON:
+def add_polynomials(A, B):
+    sizeA = len(A)
+    sizeB = len(B)
+    sizeSum = max(sizeA, sizeB)
+    sum_poly = [0] * sizeSum
+    
+    i, j, k = 0, 0, 0
+    while i < sizeA and j < sizeB:
+        sum_poly[k] = A[i] + B[j]
+        i += 1
+        j += 1
+        k += 1
+        
+    while i < sizeA:
+        sum_poly[k] = A[i]
+        i += 1
+        k += 1
+        
+    while j < sizeB:
+        sum_poly[k] = B[j]
+        j += 1
+        k += 1
+        
+    return sum_poly
+
+A = [5, 0, 10, 6]
+B = [1, 2, 4]
+sum_poly = add_polynomials(A, B)
+
+print(sum_poly)
+
+
+C:
+#include <stdio.h>
+
+void addPolynomials(int A[], int sizeA, int B[], int sizeB, int sum[], int *sizeSum) {
+    int i = 0, j = 0, k = 0;
+    while (i < sizeA && j < sizeB) {
+        sum[k++] = A[i++] + B[j++];
+    }
+    while (i < sizeA) {
+        sum[k++] = A[i++];
+    }
+    while (j < sizeB) {
+        sum[k++] = B[j++];
+    }
+    *sizeSum = k;
+}
+
+int main() {
+    int A[] = {5, 0, 10, 6};
+    int B[] = {1, 2, 4};
+    int sizeA = sizeof(A) / sizeof(A[0]);
+    int sizeB = sizeof(B) / sizeof(B[0]);
+    int sum[sizeA > sizeB ? sizeA : sizeB];
+    int sizeSum;
+
+    addPolynomials(A, sizeA, B, sizeB, sum, &sizeSum);
+
+    for (int i = 0; i < sizeSum; i++) {
+        printf("%d ", sum[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
