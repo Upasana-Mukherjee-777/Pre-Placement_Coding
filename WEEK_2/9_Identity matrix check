@@ -1,0 +1,76 @@
+QUESTION:
+Given a square matrix mat[][] of order n*n, the task is to check if it is an Identity Matrix.
+
+Identity Matrix: A square matrix is said to be an identity matrix if the elements of main diagonal are one and all other elements are zero. The identity Matrix is also known as the Unit Matrix.
+
+Program-for-Identity-Matrix
+
+
+Examples: 
+
+Input: mat[][] = [[1, 0, 0, 0],
+                             [0, 1, 0, 0],
+                             [0, 0, 1, 0],
+                             [0, 0, 0, 1]]
+
+Output: True
+Explanation: Main Diagonal = [1, 1, 1, 1], elements of main diagonal are one and all other elements are zero.
+
+Input: mat[][] = [[6, 10, 12, 0],
+                             [0, 5, 0, 0],
+                             [0, 0, 9, 0],
+                             [0, 0, 0, 1]]
+
+Output: False
+Explanation: Main Diagonal = [6, 5, 9, 1], elements of main diagonal are not one.
+
+GFG Python3:
+def isIdentityMatrix(mat):
+    n = len(mat)
+    for i in range(0, n):
+        if (mat[i][i] != 1) :
+            return False
+        
+        for j in range(0, n) :
+            if ((i != j) and (mat[i][j] != 0)) :
+                return False
+    return True
+mat = [[ 1, 0, 0, 0 ],
+       [ 0, 1, 0, 0 ],
+       [ 0, 0, 1, 0 ],
+       [ 0, 0, 0, 1 ]]
+if (isIdentityMatrix(mat)) :
+    print("True")
+else :
+    print("False")
+
+C:
+#include <stdio.h>
+
+int isIdentityMatrix(int mat[][100], int n) {
+    for (int i = 0; i < n; i++) {
+        if (mat[i][i] != 1)
+            return 0;
+        for (int j = 0; j < n; j++) {
+            if (i != j && mat[i][j] != 0)
+                return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int mat[4][100] = {
+        {1, 0, 0, 0},
+        {0, 1, 0, 0},
+        {0, 0, 1, 0},
+        {0, 0, 0, 1}
+    };
+
+    if (isIdentityMatrix(mat, 4))
+        printf("True\n");
+    else
+        printf("False\n");
+
+    return 0;
+}
